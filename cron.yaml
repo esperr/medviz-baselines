@@ -1,0 +1,4 @@
+cron:
+- description: daily build of mapcounts
+  url: /buildmapcounts
+  schedule: every 24 hours
