@@ -1,27 +1,11 @@
-# Copyright 2016 Google Inc. All Rights Reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 import functools
 import logging
 import json
 import urllib
 from operator import itemgetter
 
-# [START urlfetch-import]
 from google.appengine.api import urlfetch
 from google.appengine.ext import ndb
-# [END urlfetch-import]
 import webapp2
 import time
 regions = """ { "regions":
@@ -112,25 +96,34 @@ class BuildMapCount(webapp2.RequestHandler):
         except urlfetch.Error:
             logging.exception('Caught exception fetching url')
 
+        keyCountrycounts = 0
         regiondata = json.loads(regions)
         for x in regiondata['regions']:
+            keyCountrycounts = keyCountrycounts + len(x['countries'])
             region = x['region']
-            #self.response.write( region )
             self.fetchRegionCount(region)
 
-        jsonText = json.dumps(searches[0])
+        totalCountrycounts = 0
+        myCounts = searches[0]
+        for x in myCounts['regions']:
+            totalCountrycounts = totalCountrycounts + len(x['countries'])
 
-        self.response.write(jsonText)
+        if totalCountrycounts == keyCountrycounts:
 
-        gotJson = myJson.query(myJson.applicationName=='medmap').fetch()
-        if len(gotJson) > 0:
-            baseline = gotJson[0]
-            baseline.json = jsonText
-            baseline.put()
+            jsonText = json.dumps(myCounts, indent=4)
+            self.response.write(jsonText)
+            gotJson = myJson.query(myJson.applicationName=='medmap').fetch()
+            if len(gotJson) > 0:
+                baseline = gotJson[0]
+                baseline.json = jsonText
+                baseline.put()
+            else:
+                baselinejson = myJson(applicationName='medmap', json=jsonText)
+                baselinejson.put()
         else:
-            baselinejson = myJson(applicationName='medmap', json=jsonText)
-            baselinejson.put()
-
+            logging.exception('Problem getting the country counts')
+            self.response.status_int = 500
+            self.response.write("There has been a problem getting the country counts")
 
     def fetchRegionCount(self, region):
         # [START urlfetch-rpc]
