@@ -15,7 +15,7 @@ regions = """ { "regions":
                 "Senegal", "Sierra Leone", "Togo", "Algeria", "Egypt", "Libya", "Morocco", "Tunisia", "Comoros", "Madagascar", "Mauritius", "Reunion","Western Sahara"] },
 {"region": "Asia", "mapcode": "142", "countries":["Kazakhstan", "Kyrgyzstan", "Tajikistan", "Turkmenistan", "Uzbekistan", "Russia", "Borneo", "Brunei", "Cambodia", "Indonesia", "Laos", "Malaysia", "Mekong Valley", "Myanmar", "Philippines",
 "Singapore", "Thailand", "Timor-Leste", "Vietnam", "Bangladesh", "Bhutan", "India", "Afghanistan", "Bahrain", "Iran", "Iraq", "Israel", "Jordan", "Kuwait", "Lebanon", "Oman", "Qatar", "Saudi Arabia",
-"Syria", "Turkey", "United Arab Emirates", "Yemen", "Nepal", "Pakistan", "Sri Lanka", "China", "Hong Kong", "Macau", "Tibet", "Japan", "Democratic People's Republic of Korea", "Republic of Korea",
+"Syria", "Turkey", "United Arab Emirates", "Yemen", "Nepal", "Pakistan", "Sri Lanka", "China", "Hong Kong", "Macau", "Japan", "Democratic People's Republic of Korea", "Republic of Korea",
 "Mongolia", "Taiwan", "Armenia", "Azerbaijan", "Georgia (Republic)"] },
 {"region": "Caribbean Region", "mapcode": "029", "countries":["Antigua and Barbuda", "Bahamas", "Barbados", "British Virgin Islands", "Cuba", "Dominica", "Dominican Republic", "Grenada", "Guadeloupe", "Haiti", "Jamaica", "Martinique",
 "Netherlands Antilles", "Puerto Rico", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Trinidad and Tobago", "United States Virgin Islands", "Turks and Caicos", "Anguilla", "Cayman Islands", "Montserrat", "Saint Martin", "Sint Maarten" ] },
